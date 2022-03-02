@@ -1,0 +1,43 @@
+spring:
+  datasource:
+    username: slavim-user
+    password: slavim-pass
+    driver-class-name: org.postgresql.Driver
+    url: jdbc:postgresql://localhost:5432/slavim-db
+  jpa:
+    show-sql: false
+    hibernate:
+      ddl-auto: create-drop
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.PostgreSQLDialect
+        format_sql: true
+  session:
+    store-type: redis
+  thymeleaf:
+    cache: false
+  redis:
+    host: localhost
+    port: 6379
+  data:
+    cassandra:
+      keyspace-name: slavim_chat
+      contact-points: 127.0.0.1
+      port: 9042
+    redis:
+      repositories:
+        enabled: true
+  flyway:
+    enabled: true
+    user: "slavim-user"
+    url: jdbc:postgresql://localhost:5432/slavim-db
+    schemas: public
+    baseline-on-migrate: true
+    placeholder-replacement: false
+    password: "slavim-pass"
+
+slavim:
+  chat:
+    relay:
+      host: localhost
+      port: 61613

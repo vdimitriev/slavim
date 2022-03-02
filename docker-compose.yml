@@ -1,0 +1,31 @@
+version: "3.2"
+
+services:
+  postgres:
+    container_name: slavim-postgres
+    image: postgres:12-alpine
+    expose:
+      - 5432
+    ports:
+      - 5432:5432
+    environment:
+      - POSTGRES_PASSWORD=slavim-pass
+      - POSTGRES_USER=slavim-user
+      - POSTGRES_DB=slavim-db
+  redis:
+    container_name: slavim-redis
+    image: "redis:6.2.6"
+    ports:
+      - "6379:6379"
+  cassandra:
+    container_name: slavim-cassandra
+    image: "cassandra:4.0.3"
+    ports:
+      - "9042:9042"
+  rabbitmq-stomp:
+    container_name: slavim-rabbitmq-stomp
+    image: "jorgeacetozi/rabbitmq-stomp:3.6"
+    ports:
+      - "5672:5672"
+      - "15672:15672"
+      - "61613:61613"
