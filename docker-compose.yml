@@ -19,9 +19,12 @@ services:
       - "6379:6379"
   cassandra:
     container_name: slavim-cassandra
-    image: "cassandra:4.0.3"
+    image: "cassandra:3.11.12"
     ports:
       - "9042:9042"
+    volumes:
+      - "./cassandra_init/cassandra_init.sh:/cassandra_init.sh"
+    command: "sh /cassandra_init.sh"
   rabbitmq-stomp:
     container_name: slavim-rabbitmq-stomp
     image: "jorgeacetozi/rabbitmq-stomp:3.6"
@@ -29,3 +32,6 @@ services:
       - "5672:5672"
       - "15672:15672"
       - "61613:61613"
+
+volumes:
+  cassandra-data: {}

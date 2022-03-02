@@ -1,0 +1,13 @@
+version: "3.2"
+
+services:
+  cassandra:
+    container_name: slavim-cassandra
+    image: "cassandra:3.11.12"
+    ports:
+      - "9042:9042"
+    volumes:
+      - "./cassandra_init/cassandra_init.sh:/cassandra_init.sh"
+    command: "sh /cassandra_init.sh"
+    environment:
+      - CASSANDRA_CLUSTER_NAME=slavim

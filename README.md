@@ -33,7 +33,7 @@ Local build and run without IDE:
 
 ## How to create keyspace and table in cassandra db
 
-user$ docker exec -it slavim-cassandra /bin/bash
+dimitriev$ docker exec -it slavim-cassandra /bin/bash
 root@random:/# cqlsh -u cassandra -p cassandra
 cassandra@cqlsh>
 cassandra@cqlsh> show version
