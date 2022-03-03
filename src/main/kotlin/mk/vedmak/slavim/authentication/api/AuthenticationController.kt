@@ -10,10 +10,7 @@ import org.springframework.web.bind.annotation.RequestMethod
 import javax.validation.Valid
 
 @Controller
-class AuthenticationController {
-
-    @Autowired
-    private lateinit var userService: UserService
+class AuthenticationController(val userService: UserService) {
 
     @RequestMapping("/")
     fun login(): String {

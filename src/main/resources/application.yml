@@ -1,4 +1,7 @@
 spring:
+  main:
+    banner-mode: "off"
+    log-startup-info: false
   datasource:
     username: slavim-user
     password: slavim-pass
@@ -12,6 +15,8 @@ spring:
       hibernate:
         dialect: org.hibernate.dialect.PostgreSQLDialect
         format_sql: true
+        id:
+          new_generator_mappings: false
   session:
     store-type: redis
   thymeleaf:

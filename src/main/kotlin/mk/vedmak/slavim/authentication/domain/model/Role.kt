@@ -8,12 +8,12 @@ data class Role(
 
     @Id
     @SequenceGenerator(name = "roles_id_sequence", sequenceName = "roles_id_seq")
-    @GeneratedValue(strategy = GenerationType.SEQUENCE)
+    @GeneratedValue(generator = "roles_id_sequence")
     var id: Long? = null,
 
     var name: String = "",
 
     @ManyToMany(mappedBy = "roles", cascade = [CascadeType.ALL])
-    var users:MutableSet<User> = HashSet()
+    var users:MutableList<User> = mutableListOf()
 
 )
