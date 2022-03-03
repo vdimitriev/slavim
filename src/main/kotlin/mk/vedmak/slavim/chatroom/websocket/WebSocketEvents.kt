@@ -7,6 +7,7 @@ import org.springframework.messaging.simp.SimpMessageHeaderAccessor
 import org.springframework.stereotype.Component
 import org.springframework.web.socket.messaging.SessionConnectEvent
 import org.springframework.web.socket.messaging.SessionDisconnectEvent
+import java.util.*
 
 @Component
 class WebSocketEvents(val chatRoomService: ChatRoomService) {
@@ -16,7 +17,7 @@ class WebSocketEvents(val chatRoomService: ChatRoomService) {
         val headers = SimpMessageHeaderAccessor.wrap(event.message)
         val chatRoomId = headers.getNativeHeader("chatRoomId")!![0]
         headers.sessionAttributes!!["chatRoomId"] = chatRoomId
-        val joiningUser = ChatRoomUser(event.user!!.name)
+        val joiningUser = ChatRoomUser(event.user!!.name, Date())
         chatRoomService.join(joiningUser, chatRoomService.findById(chatRoomId))
     }
 
@@ -24,7 +25,7 @@ class WebSocketEvents(val chatRoomService: ChatRoomService) {
     fun handleSessionDisconnect(event: SessionDisconnectEvent) {
         val headers = SimpMessageHeaderAccessor.wrap(event.message)
         val chatRoomId = headers.sessionAttributes!!["chatRoomId"].toString()
-        val leavingUser = ChatRoomUser(event.user!!.name)
+        val leavingUser = ChatRoomUser(event.user!!.name, Date())
         chatRoomService.leave(leavingUser, chatRoomService.findById(chatRoomId))
     }
 

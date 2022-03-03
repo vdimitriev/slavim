@@ -8,9 +8,9 @@ import java.util.*
 data class ChatRoom(
 
     @Id
-    val id: String,
-    val name: String,
-    val description: String,
+    var id: String,
+    var name: String,
+    var description: String,
     var connectedUsers: MutableList<ChatRoomUser> = mutableListOf()
 
     ) {

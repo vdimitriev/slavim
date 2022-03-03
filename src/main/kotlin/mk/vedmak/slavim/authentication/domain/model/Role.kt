@@ -13,6 +13,7 @@ data class Role(
 
     var name: String = "",
 
-    @ManyToMany(mappedBy = "roles")
+    @ManyToMany(mappedBy = "roles", cascade = [CascadeType.ALL])
     var users:MutableSet<User> = HashSet()
+
 )

@@ -4,15 +4,12 @@ import java.util.*
 
 data class ChatRoomUser(
 
-    val username: String,
+    var username: String,
+    var joinedAt: Date
 
-    val joinedAt: Date = Date())
-
-    : Comparable<ChatRoomUser> {
+    ): Comparable<ChatRoomUser> {
 
     override fun compareTo(other: ChatRoomUser): Int {
         return username.compareTo(other.username)
     }
-
-    constructor():this("")
 }

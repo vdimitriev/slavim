@@ -17,7 +17,7 @@ class CassandraConfig() : AbstractCassandraConfiguration() {
     @Bean
     @Throws(ClassNotFoundException::class)
     override fun cassandraMapping(): CassandraMappingContext {
-        return BasicCassandraMappingContext()
+        return CassandraMappingContext()
     }
 
 }

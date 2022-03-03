@@ -14,21 +14,23 @@ data class InstantMessage(
 
     @PrimaryKeyColumn(name = "username", ordinal = 0, type = PrimaryKeyType.PARTITIONED)
     @JsonIgnore
-    var username: String = "",
+    var username: String,
 
     @PrimaryKeyColumn(name = "chatRoomId", ordinal = 1, type = PrimaryKeyType.PARTITIONED)
-    var chatRoomId: String = "",
+    var chatRoomId: String,
 
     @PrimaryKeyColumn(name = "date", ordinal = 2, type = PrimaryKeyType.CLUSTERED, ordering = Ordering.ASCENDING)
-    var date: Date = Date(),
+    var date: Date,
 
-    var fromUser: String = "",
+    var fromUser: String,
 
-    var toUser: String? = null,
+    var toUser: String?,
 
-    var text: String = ""
+    var text: String
 
     ) {
+
+    constructor():this("", "", Date(), "", null, "")
 
     fun isPublic(): Boolean {
         return toUser.isNullOrEmpty()
