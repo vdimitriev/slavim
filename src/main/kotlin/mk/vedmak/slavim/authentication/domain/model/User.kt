@@ -1,31 +1,22 @@
 package mk.vedmak.slavim.authentication.domain.model
 
-import org.hibernate.validator.constraints.Email
-import org.hibernate.validator.constraints.NotEmpty
 import javax.persistence.*
-import javax.validation.constraints.Size
 
 @Entity
 @Table(name = "users")
 data class User(
 
     @Id
-    @NotEmpty
-    @Size(min = 5, max = 15)
-    var username: String? = null,
+    @SequenceGenerator(name = "users_id_sequence", sequenceName = "users_id_seq")
+    @GeneratedValue(strategy = GenerationType.SEQUENCE)
+    var id: Long? = null,
 
-    @NotEmpty
-    @Size(min = 5)
+    var username: String = "",
     var password: String = "",
-
-    @NotEmpty
     var name: String = "",
-
-    @Email
-    @NotEmpty
     var email: String = ""
 
-) {
+    ) {
 
     fun addRoles(roles: Collection<Role>) {
     }

@@ -7,14 +7,13 @@ import org.springframework.security.core.userdetails.UserDetails
 import org.springframework.security.core.userdetails.UserDetailsService
 import org.springframework.security.core.userdetails.UsernameNotFoundException
 import org.springframework.stereotype.Service
-import java.util.stream.Collectors
 
 @Service
 class UserDetailsServiceImpl(val userRepository: UserRepository): UserDetailsService {
 
     @Throws(UsernameNotFoundException::class)
     override fun loadUserByUsername(username: String): UserDetails {
-        val user: User = userRepository.findById(username).get()
+        val user: User = userRepository.findByUsername(username) ?: throw UsernameNotFoundException("No user was found for username $username")
         return org.springframework.security.core.userdetails.User(
             user.username,
             user.password,

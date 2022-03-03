@@ -14,12 +14,10 @@ class DefaultUserService(
 
     val roleRepository: RoleRepository,
 
-    val bCryptPasswordEncoder: BCryptPasswordEncoder)
-
-    :UserService {
+    val bCryptPasswordEncoder: BCryptPasswordEncoder) {
 
     @Transactional
-    override fun createUser(user: User): User {
+    fun createUser(user: User): User {
         user.password = bCryptPasswordEncoder.encode(user.password)
         roleRepository.findByName("ROLE_USER")?.let {
             user.addRoles(listOf(it))

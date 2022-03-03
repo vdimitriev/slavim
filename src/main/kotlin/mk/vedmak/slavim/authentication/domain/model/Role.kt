@@ -3,14 +3,13 @@ package mk.vedmak.slavim.authentication.domain.model
 import javax.persistence.*
 
 @Entity
-@Table(name = "role")
+@Table(name = "roles")
 data class Role(
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name = "role_id")
-    var id: Int? = null,
-
+    @SequenceGenerator(name = "roles_id_sequence", sequenceName = "roles_id_seq")
+    @GeneratedValue(strategy = GenerationType.SEQUENCE)
+    var id: Long? = null,
     var name: String = ""
 
 )
