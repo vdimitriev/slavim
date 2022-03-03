@@ -20,7 +20,7 @@ class DefaultUserService(
     fun createUser(user: User): User {
         user.password = bCryptPasswordEncoder.encode(user.password)
         roleRepository.findByName("ROLE_USER")?.let {
-            user.addRoles(listOf(it))
+            user.addRoles(mutableListOf(it))
         }
         return userRepository.save(user)
 

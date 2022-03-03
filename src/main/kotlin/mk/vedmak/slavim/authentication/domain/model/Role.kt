@@ -10,6 +10,9 @@ data class Role(
     @SequenceGenerator(name = "roles_id_sequence", sequenceName = "roles_id_seq")
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
     var id: Long? = null,
-    var name: String = ""
 
+    var name: String = "",
+
+    @ManyToMany(mappedBy = "roles")
+    var users:MutableSet<User> = HashSet()
 )

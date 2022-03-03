@@ -14,10 +14,18 @@ data class User(
     var username: String = "",
     var password: String = "",
     var name: String = "",
-    var email: String = ""
+    var email: String = "",
 
-    ) {
+    @ManyToMany(fetch = FetchType.EAGER)
+    @JoinTable(name = "user_role",
+        joinColumns = [JoinColumn(name = "user_id")],
+        inverseJoinColumns = [JoinColumn(name = "role_id")]
+    )
+    var roles: MutableSet<Role> = HashSet()
 
-    fun addRoles(roles: Collection<Role>) {
+) {
+
+    fun addRoles(roles: MutableList<Role>) {
+        this.roles.addAll(roles)
     }
 }
