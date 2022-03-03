@@ -12,8 +12,11 @@ import org.springframework.web.socket.config.annotation.StompEndpointRegistry
 @EnableWebSocketMessageBroker
 class WebSocketConfig : AbstractSessionWebSocketMessageBrokerConfigurer<ExpiringSession>() {
 
-    private var relayHost: String = "localhost"
-    private var relayPort: Int = 61613
+    @Value("\${slavim.chat.relay.host:localhost}")
+    private lateinit var relayHost: String
+
+    @Value("\${slavim.chat.relay.port:61613}")
+    private lateinit var relayPort: String
 
     override fun configureStompEndpoints(registry: StompEndpointRegistry) {
         registry.addEndpoint("/ws").withSockJS()
@@ -24,7 +27,7 @@ class WebSocketConfig : AbstractSessionWebSocketMessageBrokerConfigurer<Expiring
             .setUserDestinationBroadcast("/topic/unresolved.user.dest")
             .setUserRegistryBroadcast("/topic/registry.broadcast")
             .setRelayHost(relayHost)
-            .setRelayPort(relayPort)
+            .setRelayPort(relayPort.toInt())
 
         registry.setApplicationDestinationPrefixes("/chatroom")
     }
