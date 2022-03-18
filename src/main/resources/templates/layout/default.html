@@ -1,13 +1,15 @@
 <!DOCTYPE html>
-<html xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3" lang="en">
+<html lang="en"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
 <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=no"/>
-    <title>SlaVIM - Ebook Chat App</title>
-    <link rel="stylesheet" th:href="@{webjars/bootstrap/5.1.3/css/bootstrap.min.css}" media="screen,projection" />
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=no"/>
+  <title>SlaVIM - Ebook Chat App</title>
+  <link th:href = "@{/webjars/bootstrap/5.1.3/css/bootstrap.min.css}" rel = "stylesheet" media = "screen,projection" type = "text/css" />
 </head>
 <body>
-<!-- Fixed navbar -->
 <nav class="navbar navbar-default navbar-fixed-top">
   <div class="container">
     <div class="navbar-header">
@@ -24,13 +26,6 @@
         <li class="active"><a href="/chat" th:text="#{menu.chatrooms}">Chat Rooms</a></li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
-        <li class="dropdown">
-          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false" th:text="#{menu.language}">Language</a>
-          <ul class="dropdown-menu">
-          	<li><a id="english" href="?lang=en" th:text="#{menu.language.english}">English</a></li>
-            <li><a id="portuguese" href="?lang=pt" th:text="#{menu.language.portuguese}">Portuguese</a></li>
-          </ul>
-        </li>
         <li class="dropdown" sec:authorize="isAuthenticated()">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><span sec:authentication="name"></span></a>
           <ul class="dropdown-menu">
@@ -42,14 +37,11 @@
     </div>
   </div>
 </nav>
-
 <section layout:fragment="content">
     <p>Page content here</p>
 </section>
-
-<script src="/webjars/jquery/3.6.0/jquery.min.js"></script>
-<script src="/webjars/bootstrap/5.1.3/js/bootstrap.min.js"></script>
-<script type="text/javascript" layout:fragment="script">
-</script>
+<script th:href="@{/webjars/jquery/3.6.0/jquery.min.js}" th:src="@{/webjars/jquery/3.6.0/jquery.min.js}"></script>
+<script th:href="@{/webjars/bootstrap/5.1.3/js/bootstrap.min.js}" th:src="@{/webjars/bootstrap/5.1.3/js/bootstrap.min.js}"></script>
+<script type="text/javascript" layout:fragment="script"></script>
 </body>
 </html>

@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
+<head>
+    <meta http-equiv = "Content-Type" content = "text/html; charset=UTF-8"/>
+    <title>SlaVIM - Ebook Chat App</title>
+    <link type = "text/css" rel="stylesheet" th:href="@{/static/css/bootstrap.min.css}">
+</head>
+<body>
+<nav class="navbar navbar-expand-lg navbar-light bg-light navbar-fixed-top">
+    <div class="container">
+        <div class="navbar-header">
+            <a class="navbar-brand active" href="#">SlaVIM</a>
+        </div>
+        <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+            <div class="navbar-nav">
+                <a class="nav-link" href="/chat" sec:authorize="isAuthenticated()">Chat rooms</a>
+                <a class="nav-link" id="newChatRoom" href="#" data-bs-toggle="modal" data-bs-target="#newChatRoomModal" sec:authorize="hasRole('ROLE_ADMIN')">New Chat Room</a>
+                <a class="nav-link" href="/logout" sec:authorize="isAuthenticated()">Logout</a>
+            </div>
+        </div>
+    </div>
+</nav>
+<section layout:fragment="content">
+    <p>Page content here</p>
+</section>
+<script type = "text/javascript" th:src = "@{/static/js/jquery.min.js}"></script>
+<script type = "text/javascript" th:src = "@{/static/js/bootstrap.min.js}"></script>
+<script type = "text/javascript" layout:fragment = "script"></script>
+</body>
+</html>

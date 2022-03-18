@@ -1,8 +1,6 @@
 package mk.vedmak.slavim.configuration
 
-import mk.vedmak.slavim.authentication.domain.service.UserDetailsServiceImpl
 import mu.KotlinLogging
-import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.beans.factory.annotation.Qualifier
 import org.springframework.context.annotation.Bean
 import org.springframework.context.annotation.Configuration
@@ -32,13 +30,11 @@ class WebSecurityConfig(
 
     @Throws(Exception::class)
     override fun configure(auth: AuthenticationManagerBuilder) {
-        logger.info("Configure user details service")
         auth.userDetailsService(userDetailsService).passwordEncoder(bCryptPasswordEncoder())
     }
 
     @Throws(Exception::class)
     override fun configure(http: HttpSecurity) {
-        logger.info("Configure http security")
         http
             .csrf().disable()
             .formLogin()
@@ -51,6 +47,8 @@ class WebSecurityConfig(
                 .and()
             .authorizeRequests()
                 .antMatchers("/login", "/new-account", "/").permitAll()
+                .antMatchers("/css/**", "/js/**", "/static/**").permitAll()
+                //.antMatchers(HttpMethod.POST, "/chatroom").hasRole("ADMIN")
                 .antMatchers(HttpMethod.POST, "/chatroom").hasRole("ADMIN")
                 .anyRequest().authenticated()
     }

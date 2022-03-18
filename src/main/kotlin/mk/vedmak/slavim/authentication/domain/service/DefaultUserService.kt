@@ -21,9 +21,9 @@ class DefaultUserService(
     @Transactional
     override fun createUser(user: User): User {
         user.password = bCryptPasswordEncoder.encode(user.password)
-        roleRepository.findByName("ROLE_USER")?.let {
-            user.addRoles(mutableListOf(it))
-        }
+//        roleRepository.findByName("ROLE_USER")?.let {
+//            user.addRoles(mutableListOf(it))
+//        }
         return userRepository.save(user)
 
     }
